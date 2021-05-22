@@ -5,7 +5,8 @@ import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import { problemDataType } from "../reducers/problem";
 import { changeValue } from "../reducers/problem";
-import { useDispatch } from "react-redux";
+import { RootState } from "../reducers";
+import { useDispatch, useSelector } from "react-redux";
 
 interface ProblemListItemProps {
   problem: problemDataType;
@@ -58,21 +59,21 @@ const CardTitleUnitName = styled.p`
   color: #4c4c4c;
 `;
 
-const CardButton = styled.button`
+const CardButton = styled.button<{ active?: boolean }>`
   width: 80px;
   height: 36px;
-  border: 1px solid #e0e0e0;
+  border: ${(props) =>
+    props.active ? "1px solid #00abff" : "1px solid #e0e0e0"};
   border-radius: 2px;
-  background: #fff;
+  background: ${(props) => (props.active ? "#00abff" : "#fff")};
   &:first-of-type {
     margin-right: 8px;
   }
-`;
-
-const CardButtonText = styled.p`
-  font-size: 14px;
-  font-weight: 700;
-  color: #00abff;
+  & > p {
+    font-size: 14px;
+    font-weight: 700;
+    color: ${(props) => (props.active ? "#fff" : "#00abff")};
+  }
 `;
 
 const CardContentContainer = styled.div`
@@ -95,13 +96,18 @@ const ProblemListItem: React.FC<ProblemListItemProps> = ({
   problem,
   index,
 }) => {
+  const { targetIndex } = useSelector(({ problem }: RootState) => problem);
   const dispatch = useDispatch();
 
-  const onChangeValue = useCallback(() => {
+  const onClickCardButton = useCallback(() => {
     dispatch(changeValue({ key: "isButtonClicked", value: true }));
     dispatch(changeValue({ key: "targetIndex", value: index - 1 }));
   }, [dispatch]);
-  
+
+  // const onActiveCardButton = useCallback(() => {
+  //   return index - 1 === targetIndex;
+  // }, [index, targetIndex]);
+
   return (
     <Card>
       <CardTitleContainer>
@@ -110,11 +116,11 @@ const ProblemListItem: React.FC<ProblemListItemProps> = ({
           <CardTitleUnitName>{problem.unitName}</CardTitleUnitName>
         </CardTitleInner>
         <CardButtonInner>
-          <CardButton onClick={onChangeValue}>
-            <CardButtonText>유사문항</CardButtonText>
+          <CardButton onClick={onClickCardButton} active={index - 1 === targetIndex}>
+            <p>유사문항</p>
           </CardButton>
           <CardButton>
-            <CardButtonText>삭제</CardButtonText>
+            <p>삭제</p>
           </CardButton>
         </CardButtonInner>
       </CardTitleContainer>
