@@ -2,7 +2,10 @@
 /** @jsxImportSource @emotion/react */
 import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+import ProblemList from "./ProblemList";
 import axios from "axios";
+
 const Section = styled.section`
   width: calc(50% - 3px);
 `;
@@ -15,7 +18,7 @@ const ProblemHeaderContainer = styled.div`
 
 const CardContainer = styled.div`
   width: 100%;
-  height: calc((100vh - 48px) - 3px);
+  height: calc(100vh - 48px - 3px);
   overflow-y: auto;
 `;
 
@@ -28,7 +31,6 @@ const ProblemHeader = styled.h3`
 
 const ProblemLayout = () => {
   const [problemData, setProblemData] = useState([]);
-
   useEffect(() => {
     getProblemsData();
   }, []);
@@ -49,7 +51,7 @@ const ProblemLayout = () => {
         <ProblemHeader>학습지 상세 편집</ProblemHeader>
       </ProblemHeaderContainer>
       <CardContainer>
-        {/* <ProblemList problems={problemData} /> */}
+        <ProblemList problems={problemData} />
       </CardContainer>
     </Section>
   );

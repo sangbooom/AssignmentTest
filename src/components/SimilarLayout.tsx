@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "@emotion/styled";
+import SimilarList from "./SimilarList";
 import axios from "axios";
 
 const Section = styled.section`
@@ -14,7 +15,7 @@ const SimilarHeaderContainer = styled.section`
 
 const CardContainer = styled.div`
   width: 100%;
-  height: calc((100vh - 48px) - 3px);
+  height: calc(100vh - 48px - 3px);
   overflow-y: auto;
 `;
 
@@ -36,13 +37,13 @@ const SimilarListHeader = styled.p`
 
 const ExplainContainer = styled.div`
   width: 100%;
-  height: calc((100vh - 48px) - 3px);
+  height: calc(100vh - 48px - 3px);
   overflow-y: auto;
 `;
 
 const Explain = styled.div`
   background: #fff;
-  height: calc((100vh - 48px) - 3px);
+  height: calc(100vh - 48px - 3px);
   display: flex;
   justify-content: center;
   align-items: center;
