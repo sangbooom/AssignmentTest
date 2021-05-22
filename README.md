@@ -1,5 +1,5 @@
 # 🧾 프리윌린 과제테스트
-
+[![Netlify Status](https://api.netlify.com/api/v1/badges/da2c20f3-0fcf-4a9e-b26d-96f6d749497e/deploy-status)](https://app.netlify.com/sites/mathflat-clone/deploys)
 ## ⚙ 패키지 관리
 - npm
 ## 📚 사용 기술 스택
