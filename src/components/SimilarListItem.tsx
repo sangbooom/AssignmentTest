@@ -103,8 +103,8 @@ const SimilarListItem: React.FC<SimilarListItemProps> = ({
   }, [dispatch, targetIndex]);
 
   const onClickSwapButton = useCallback(() => {
-    dispatch(swapSimilar());
-  }, [dispatch]);
+    dispatch(swapSimilar(targetIndex));
+  }, [dispatch, targetIndex]);
 
   return (
     <Card>

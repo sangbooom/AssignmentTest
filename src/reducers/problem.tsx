@@ -52,8 +52,9 @@ export const deleteProblem = (data: number) => ({
   type: DELETE_PROBLEM,
   data,
 });
-export const swapSimilar = () => ({
+export const swapSimilar = (data: number) => ({
   type: SWAP_SIMILAR,
+  data,
 });
 
 type problemAction =
@@ -80,6 +81,22 @@ const reducer = (state = initialState, action: problemAction) => {
         draft.problemData.splice(action.data, 1);
         break;
       case SWAP_SIMILAR:
+        draft.problemData.splice(
+          draft.activeIndex + 1,
+          0,
+          draft.similarData[action.data]
+        );
+        // 교체 누른 문제를 학습지의 active문제의 아래에 추가
+        draft.similarData.splice(action.data, 1);
+        // 교체 누른 문제를 similarData에서 삭제
+        draft.similarData.splice(
+          action.data,
+          0,
+          draft.problemData[draft.activeIndex]
+        );
+        // 학습지의 active문제를 similarData에서 삭제한 index에 추가
+        draft.problemData.splice(draft.activeIndex, 1);
+        // 학습지의 active문제를 problemData에서 삭제
         break;
       default:
         return state;
