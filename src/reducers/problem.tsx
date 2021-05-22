@@ -77,9 +77,7 @@ const reducer = (state = initialState, action: problemAction) => {
         draft.similarData.splice(action.data, 1);
         break;
       case DELETE_PROBLEM:
-        draft.problemData = draft.problemData.filter(
-          (_: null, index: number) => action.data !== index
-        );
+        draft.problemData.splice(action.data, 1);
         break;
       case SWAP_SIMILAR:
         break;
