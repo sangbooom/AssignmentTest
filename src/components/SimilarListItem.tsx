@@ -1,9 +1,11 @@
 /* eslint-disable react/jsx-pascal-case */
 /** @jsxImportSource @emotion/react */
-import React from "react";
+import React, { useCallback } from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import { problemDataType } from "../reducers/problem";
+import { useDispatch, useSelector } from "react-redux";
+import { problemDataType, addProblem, swapSimilar } from "../reducers/problem";
+import { RootState } from "../reducers";
 
 interface SimilarListItemProps {
   similar: problemDataType;
@@ -92,10 +94,18 @@ const SimilarListItem: React.FC<SimilarListItemProps> = ({
   similar,
   index,
 }) => {
-  
-  const onClickCardButton = () => {
-    console.log("Asd")
-  }
+  const dispatch = useDispatch();
+  const {} = useSelector(({ problem }: RootState) => problem);
+  const targetIndex = index - 1;
+
+  const onClickAddButton = useCallback(() => {
+    dispatch(addProblem(targetIndex));
+  }, [dispatch, targetIndex]);
+
+  const onClickSwapButton = useCallback(() => {
+    dispatch(swapSimilar());
+  }, [dispatch]);
+
   return (
     <Card>
       <CardTitleContainer>
@@ -104,11 +114,11 @@ const SimilarListItem: React.FC<SimilarListItemProps> = ({
           <CardTitleUnitName>{similar.unitName}</CardTitleUnitName>
         </CardTitleInner>
         <CardButtonInner>
-          <CardButton onClick={onClickCardButton}>
+          <CardButton onClick={onClickAddButton}>
             <p>추가</p>
           </CardButton>
-          <CardButton>
-            <p>삭제</p>
+          <CardButton onClick={onClickSwapButton}>
+            <p>교체</p>
           </CardButton>
         </CardButtonInner>
       </CardTitleContainer>
