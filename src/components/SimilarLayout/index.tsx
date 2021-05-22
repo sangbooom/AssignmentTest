@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import SimilarList from "../SimilarList";
 import { RootState } from "../../reducers";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { changeValue } from "../../reducers/problem";
 import {
   Section,
@@ -15,7 +14,7 @@ import {
   ExplainTextButton,
   CardContainer,
 } from "./style";
-import * as problemsAPI from '../../lib/api';
+import * as problemsAPI from "../../lib/api";
 
 const SimilarLayout = () => {
   const dispatch = useDispatch();
