@@ -1,9 +1,11 @@
 /* eslint-disable react/jsx-pascal-case */
 /** @jsxImportSource @emotion/react */
-import React from "react";
+import React, { useCallback } from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import { problemDataType} from './ProblemList';
+import { problemDataType } from "../reducers/problem";
+import { changeValue } from "../reducers/problem";
+import { useDispatch } from "react-redux";
 
 interface ProblemListItemProps {
   problem: problemDataType;
@@ -93,6 +95,13 @@ const ProblemListItem: React.FC<ProblemListItemProps> = ({
   problem,
   index,
 }) => {
+  const dispatch = useDispatch();
+
+  const onChangeValue = useCallback(() => {
+    dispatch(changeValue({ key: "isButtonClicked", value: true }));
+    dispatch(changeValue({ key: "targetIndex", value: index - 1 }));
+  }, [dispatch]);
+  
   return (
     <Card>
       <CardTitleContainer>
@@ -101,7 +110,7 @@ const ProblemListItem: React.FC<ProblemListItemProps> = ({
           <CardTitleUnitName>{problem.unitName}</CardTitleUnitName>
         </CardTitleInner>
         <CardButtonInner>
-          <CardButton>
+          <CardButton onClick={onChangeValue}>
             <CardButtonText>유사문항</CardButtonText>
           </CardButton>
           <CardButton>

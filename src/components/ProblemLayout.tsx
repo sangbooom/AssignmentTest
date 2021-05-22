@@ -1,9 +1,12 @@
 /* eslint-disable react/jsx-pascal-case */
 /** @jsxImportSource @emotion/react */
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import ProblemList from "./ProblemList";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../reducers";
+import { changeValue } from "../reducers/problem";
 import axios from "axios";
 
 const Section = styled.section`
@@ -30,7 +33,9 @@ const ProblemHeader = styled.h3`
 `;
 
 const ProblemLayout = () => {
-  const [problemData, setProblemData] = useState([]);
+  const dispatch = useDispatch();
+  const { problemData } = useSelector(({ problem }: RootState) => problem);
+
   useEffect(() => {
     getProblemsData();
   }, []);
@@ -38,7 +43,7 @@ const ProblemLayout = () => {
   const getProblemsData = async () => {
     try {
       const response = await axios.get("dummy/problems.json");
-      setProblemData(response.data.data);
+      dispatch(changeValue({ key: "problemData", value: response.data.data }));
       console.log(response);
     } catch (error) {
       console.log({ error });

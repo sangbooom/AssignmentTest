@@ -3,7 +3,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import { problemDataType } from "./SimilarList";
+import { problemDataType } from "../reducers/problem";
 
 interface SimilarListItemProps {
   similar: problemDataType;

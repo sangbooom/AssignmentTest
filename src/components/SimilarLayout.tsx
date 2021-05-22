@@ -1,6 +1,10 @@
 import React, { useEffect } from "react";
 import styled from "@emotion/styled";
 import SimilarList from "./SimilarList";
+import { RootState } from "../reducers";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { changeValue } from "../reducers/problem";
 import axios from "axios";
 
 const Section = styled.section`
@@ -65,6 +69,10 @@ const ExplainTextButton = styled.span`
 `;
 
 const SimilarLayout = () => {
+  const dispatch = useDispatch();
+  const { isButtonClicked, targetIndex, problemData, similarData } =
+    useSelector(({ problem }: RootState) => problem);
+
   useEffect(() => {
     getSimilarsData();
   }, []);
@@ -72,6 +80,7 @@ const SimilarLayout = () => {
   const getSimilarsData = async () => {
     try {
       const response = await axios.get("dummy/similars.json");
+      dispatch(changeValue({ key: "similarData", value: response.data.data }));
       console.log(response);
     } catch (error) {
       console.log({ error });
@@ -83,7 +92,7 @@ const SimilarLayout = () => {
       <SimilarHeaderContainer>
         <SimilarHeader>문항 교체/추가</SimilarHeader>
       </SimilarHeaderContainer>
-      {true ? (
+      {!isButtonClicked ? (
         <ExplainContainer>
           <Explain>
             <ExplainText>
@@ -95,7 +104,10 @@ const SimilarLayout = () => {
         </ExplainContainer>
       ) : (
         <CardContainer>
-          <SimilarListHeader></SimilarListHeader>
+          <SimilarListHeader>
+            {problemData[targetIndex].unitName}
+          </SimilarListHeader>
+          <SimilarList similars={similarData} />
         </CardContainer>
       )}
     </Section>
