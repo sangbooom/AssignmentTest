@@ -28,7 +28,12 @@ export const SimilarListHeader = styled.p`
   height: 36px;
   padding: 8px 0 8px 25px;
   color: #4c4c4c;
+  font-size: 14px;
+  line-height: 20px;
   background-color: #fafafa;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
   line-height: 20px;
 `;
 
@@ -50,6 +55,7 @@ export const ExplainText = styled.p`
   text-align: center;
   line-height: 28px;
   font-size: 14px;
+  color: #9f9f9f;
 `;
 
 export const ExplainTextButton = styled.span`

@@ -40,7 +40,14 @@ const SimilarLayout = () => {
       <SimilarHeaderContainer>
         <SimilarHeader>문항 교체/추가</SimilarHeader>
       </SimilarHeaderContainer>
-      {!isButtonClicked ? (
+      {isButtonClicked ? (
+        <CardContainer>
+          <SimilarListHeader>
+            {problemData[activeIndex]?.unitName}
+          </SimilarListHeader>
+          <SimilarList similars={similarData} />
+        </CardContainer>
+      ) : (
         <ExplainContainer>
           <Explain>
             <ExplainText>
@@ -50,13 +57,6 @@ const SimilarLayout = () => {
             </ExplainText>
           </Explain>
         </ExplainContainer>
-      ) : (
-        <CardContainer>
-          <SimilarListHeader>
-            {problemData[activeIndex]?.unitName}
-          </SimilarListHeader>
-          <SimilarList similars={similarData} />
-        </CardContainer>
       )}
     </Section>
   );

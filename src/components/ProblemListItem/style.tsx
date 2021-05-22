@@ -27,19 +27,23 @@ export const CardButtonInner = styled.div`
 `;
 
 export const CardTitleProblemType = styled.p`
-  width: 100px;
+  width: 70px;
   text-align: right;
   padding-right: 18px;
   font-size: 14px;
+  line-height: 14px;
   font-weight: 700;
   color: #9f9f9f;
+  @media all and (min-width: 768px) {
+    width: 100px;
+  }
 `;
 
 export const CardTitleUnitName = styled.p`
-  width: calc(
-    50vw - 100px - 199px
-  ); // calc(50vw - CardTitleProblemType의 width - (CardButtonInner의 width 168px + margin-right 15px + scroll-width 16px ) )
+  width: calc(50vw - 100px - 199px);
+  // calc(50vw - CardTitleProblemType의 width - (CardButtonInner의 width 168px + margin-right 15px + scroll-width 16px ) )
   font-size: 14px;
+  line-height: 14px;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -71,10 +75,13 @@ export const CardContentContainer = styled.div`
 `;
 
 export const CardContentIndex = styled.h3`
-  width: 100px;
-  padding-right: 37px;
+  padding: 0 12px 0 15px;
   text-align: right;
   font-size: 24px;
   font-weight: 700;
   color: #02c7f2;
+  @media all and (min-width: 768px) {
+    width: 100px;
+    padding: 0 37px 0 15px;
+  }
 `;

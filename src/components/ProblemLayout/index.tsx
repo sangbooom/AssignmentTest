@@ -21,9 +21,8 @@ const ProblemLayout = () => {
 
   const getProblemsData = async () => {
     try {
-      const response = await problemsAPI.getSimilarsData();
+      const response = await problemsAPI.getProblemsData();
       dispatch(changeValue({ key: "problemData", value: response.data.data }));
-      console.log(response);
     } catch (error) {
       console.log({ error });
     }

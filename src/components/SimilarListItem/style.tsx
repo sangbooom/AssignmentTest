@@ -27,12 +27,15 @@ export const CardButtonInner = styled.div`
 `;
 
 export const CardTitleProblemType = styled.p`
-  width: 100px;
+  width: 70px;
   text-align: right;
   padding-right: 18px;
   font-size: 14px;
   font-weight: 700;
   color: #9f9f9f;
+  @media all and (min-width: 768px) {
+    width: 100px;
+  }
 `;
 
 export const CardTitleUnitName = styled.p`
@@ -70,10 +73,13 @@ export const CardContentContainer = styled.div`
 `;
 
 export const CardContentIndex = styled.h3`
-  width: 100px;
-  padding-right: 37px;
+  padding: 0 12px 0 15px;
   text-align: right;
   font-size: 24px;
   font-weight: 700;
   color: #02c7f2;
+  @media all and (min-width: 768px) {
+    width: 100px;
+    padding: 0 37px 0 15px;
+  }
 `;

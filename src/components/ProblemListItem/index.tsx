@@ -24,10 +24,9 @@ const ProblemListItem: React.FC<ProblemListItemProps> = ({
   problem,
   index,
 }) => {
+  const dispatch = useDispatch();
   const { activeIndex } = useSelector(({ problem }: RootState) => problem);
   const targetIndex = index - 1;
-
-  const dispatch = useDispatch();
 
   const onClickSimilarCardButton = useCallback(() => {
     dispatch(changeValue({ key: "isButtonClicked", value: true }));
