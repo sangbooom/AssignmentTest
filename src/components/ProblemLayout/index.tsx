@@ -3,13 +3,13 @@ import ProblemList from "../ProblemList";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../reducers";
 import { changeValue } from "../../reducers/problem";
-import axios from "axios";
 import {
   Section,
   ProblemHeader,
   ProblemHeaderContainer,
   CardContainer,
 } from "./style";
+import * as problemsAPI from '../../lib/api';
 
 const ProblemLayout = () => {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const ProblemLayout = () => {
 
   const getProblemsData = async () => {
     try {
-      const response = await axios.get("dummy/problems.json");
+      const response = await problemsAPI.getSimilarsData();
       dispatch(changeValue({ key: "problemData", value: response.data.data }));
       console.log(response);
     } catch (error) {

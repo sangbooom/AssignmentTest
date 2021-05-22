@@ -4,7 +4,6 @@ import { RootState } from "../../reducers";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { changeValue } from "../../reducers/problem";
-import axios from "axios";
 import {
   Section,
   SimilarHeader,
@@ -16,6 +15,7 @@ import {
   ExplainTextButton,
   CardContainer,
 } from "./style";
+import * as problemsAPI from '../../lib/api';
 
 const SimilarLayout = () => {
   const dispatch = useDispatch();
@@ -28,7 +28,7 @@ const SimilarLayout = () => {
 
   const getSimilarsData = async () => {
     try {
-      const response = await axios.get("dummy/similars.json");
+      const response = await problemsAPI.getSimilarsData();
       dispatch(changeValue({ key: "similarData", value: response.data.data }));
     } catch (error) {
       console.log({ error });
@@ -44,7 +44,7 @@ const SimilarLayout = () => {
         <ExplainContainer>
           <Explain>
             <ExplainText>
-              <ExplainTextButton>유사문항</ExplainTextButton> 버튼을 누르면{" "}
+              <ExplainTextButton>유사문항</ExplainTextButton> 버튼을 누르면
               <br />
               해당 문제의 유사 문항을 볼 수 있습니다.
             </ExplainText>
