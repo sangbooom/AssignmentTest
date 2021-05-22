@@ -70,7 +70,7 @@ const ExplainTextButton = styled.span`
 
 const SimilarLayout = () => {
   const dispatch = useDispatch();
-  const { isButtonClicked, targetIndex, problemData, similarData } =
+  const { isButtonClicked, activeIndex, problemData, similarData } =
     useSelector(({ problem }: RootState) => problem);
 
   useEffect(() => {
@@ -105,7 +105,7 @@ const SimilarLayout = () => {
       ) : (
         <CardContainer>
           <SimilarListHeader>
-            {problemData[targetIndex]?.unitName}
+            {problemData[activeIndex]?.unitName}
           </SimilarListHeader>
           <SimilarList similars={similarData} />
         </CardContainer>

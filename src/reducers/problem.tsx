@@ -23,14 +23,14 @@ export type problemDataType = {
 
 type problemState = {
   isButtonClicked: boolean;
-  targetIndex: number;
+  activeIndex: number;
   problemData: problemDataType[];
   similarData: problemDataType[];
 };
 
 export const initialState: problemState = {
   isButtonClicked: false,
-  targetIndex: -1,
+  activeIndex: -1,
   problemData: [],
   similarData: [],
 };

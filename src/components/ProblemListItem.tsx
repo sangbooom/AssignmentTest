@@ -96,24 +96,28 @@ const ProblemListItem: React.FC<ProblemListItemProps> = ({
   problem,
   index,
 }) => {
-  const { targetIndex } = useSelector(({ problem }: RootState) => problem);
+  const { activeIndex } = useSelector(({ problem }: RootState) => problem);
+  const targetIndex = index - 1;
+
   const dispatch = useDispatch();
 
   const onClickSimilarCardButton = useCallback(() => {
     dispatch(changeValue({ key: "isButtonClicked", value: true }));
-    dispatch(changeValue({ key: "targetIndex", value: index - 1 }));
-  }, [dispatch]);
+    dispatch(changeValue({ key: "activeIndex", value: targetIndex }));
+  }, [dispatch, targetIndex]);
 
   const onClickDeleteButton = useCallback(() => {
-    if (targetIndex === index - 1) {
-      return;
+    if (activeIndex === targetIndex) {
+      dispatch(changeValue({ key: "isButtonClicked", value: false }));
+      dispatch(deleteProblem(targetIndex));
+      dispatch(changeValue({ key: "activeIndex", value: -1 }));
+    } else if (activeIndex > targetIndex) {
+      dispatch(deleteProblem(targetIndex));
+      dispatch(changeValue({ key: "activeIndex", value: activeIndex - 1 }));
+    } else {
+      dispatch(deleteProblem(targetIndex));
     }
-    dispatch(deleteProblem(index - 1));
-  }, [dispatch]);
-
-  // const onActiveCardButton = useCallback(() => {
-  //   return index - 1 === targetIndex;
-  // }, [index, targetIndex]);
+  }, [dispatch, activeIndex, targetIndex]);
 
   return (
     <Card>
@@ -125,7 +129,7 @@ const ProblemListItem: React.FC<ProblemListItemProps> = ({
         <CardButtonInner>
           <CardButton
             onClick={onClickSimilarCardButton}
-            active={targetIndex === index - 1}
+            active={activeIndex === targetIndex}
           >
             <p>유사문항</p>
           </CardButton>
