@@ -4,7 +4,7 @@ import React, { useCallback } from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import { problemDataType } from "../reducers/problem";
-import { changeValue } from "../reducers/problem";
+import { changeValue, deleteProblem } from "../reducers/problem";
 import { RootState } from "../reducers";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -99,9 +99,16 @@ const ProblemListItem: React.FC<ProblemListItemProps> = ({
   const { targetIndex } = useSelector(({ problem }: RootState) => problem);
   const dispatch = useDispatch();
 
-  const onClickCardButton = useCallback(() => {
+  const onClickSimilarCardButton = useCallback(() => {
     dispatch(changeValue({ key: "isButtonClicked", value: true }));
     dispatch(changeValue({ key: "targetIndex", value: index - 1 }));
+  }, [dispatch]);
+
+  const onClickDeleteButton = useCallback(() => {
+    if (targetIndex === index - 1) {
+      return;
+    }
+    dispatch(deleteProblem(index - 1));
   }, [dispatch]);
 
   // const onActiveCardButton = useCallback(() => {
@@ -116,10 +123,13 @@ const ProblemListItem: React.FC<ProblemListItemProps> = ({
           <CardTitleUnitName>{problem.unitName}</CardTitleUnitName>
         </CardTitleInner>
         <CardButtonInner>
-          <CardButton onClick={onClickCardButton} active={index - 1 === targetIndex}>
+          <CardButton
+            onClick={onClickSimilarCardButton}
+            active={targetIndex === index - 1}
+          >
             <p>유사문항</p>
           </CardButton>
-          <CardButton>
+          <CardButton onClick={onClickDeleteButton}>
             <p>삭제</p>
           </CardButton>
         </CardButtonInner>

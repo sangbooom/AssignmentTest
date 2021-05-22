@@ -105,7 +105,7 @@ const SimilarLayout = () => {
       ) : (
         <CardContainer>
           <SimilarListHeader>
-            {problemData[targetIndex].unitName}
+            {problemData[targetIndex]?.unitName}
           </SimilarListHeader>
           <SimilarList similars={similarData} />
         </CardContainer>

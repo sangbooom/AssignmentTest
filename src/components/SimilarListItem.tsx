@@ -65,12 +65,11 @@ const CardButton = styled.button`
   &:first-of-type {
     margin-right: 8px;
   }
-`;
-
-const CardButtonText = styled.p`
-  font-size: 14px;
-  font-weight: 700;
-  color: #00abff;
+  & > p {
+    font-size: 14px;
+    font-weight: 700;
+    color: #00abff;
+  }
 `;
 
 const CardContentContainer = styled.div`
@@ -93,6 +92,10 @@ const SimilarListItem: React.FC<SimilarListItemProps> = ({
   similar,
   index,
 }) => {
+  
+  const onClickCardButton = () => {
+    console.log("Asd")
+  }
   return (
     <Card>
       <CardTitleContainer>
@@ -101,11 +104,11 @@ const SimilarListItem: React.FC<SimilarListItemProps> = ({
           <CardTitleUnitName>{similar.unitName}</CardTitleUnitName>
         </CardTitleInner>
         <CardButtonInner>
-          <CardButton>
-            <CardButtonText>유사문항</CardButtonText>
+          <CardButton onClick={onClickCardButton}>
+            <p>추가</p>
           </CardButton>
           <CardButton>
-            <CardButtonText>삭제</CardButtonText>
+            <p>삭제</p>
           </CardButton>
         </CardButtonInner>
       </CardTitleContainer>
