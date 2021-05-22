@@ -1,6 +1,6 @@
 import React from "react";
-import SimilarListItem from "./SimilarListItem";
-import {problemDataType} from '../reducers/problem';
+import SimilarListItem from "../SimilarListItem";
+import {problemDataType} from '../../reducers/problem';
 
 interface SimilarListProps {
   similars: problemDataType[];

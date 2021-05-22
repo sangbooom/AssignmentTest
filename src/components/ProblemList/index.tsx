@@ -1,6 +1,6 @@
 import React from "react";
-import ProblemListItem from "./ProblemListItem";
-import { problemDataType } from "../reducers/problem";
+import ProblemListItem from "../ProblemListItem";
+import { problemDataType } from "../../reducers/problem";
 
 interface ProblemListProps {
   problems: problemDataType[];

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
-import ProblemLayout from "./components/ProblemLayout";
-import SimilarLayout from "./components/SimilarLayout";
+import ProblemLayout from "./components/ProblemLayout/index";
+import SimilarLayout from "./components/SimilarLayout/index";
 
 const Wrapper = styled.main`
   display: flex;

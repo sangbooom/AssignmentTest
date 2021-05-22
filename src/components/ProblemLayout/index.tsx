@@ -1,36 +1,15 @@
-/* eslint-disable react/jsx-pascal-case */
-/** @jsxImportSource @emotion/react */
-import React, { useEffect } from "react";
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
-import ProblemList from "./ProblemList";
+import { useEffect } from "react";
+import ProblemList from "../ProblemList";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../reducers";
-import { changeValue } from "../reducers/problem";
+import { RootState } from "../../reducers";
+import { changeValue } from "../../reducers/problem";
 import axios from "axios";
-
-const Section = styled.section`
-  width: calc(50% - 3px);
-`;
-const ProblemHeaderContainer = styled.div`
-  width: 100%;
-  height: 48px;
-  background-color: #fff;
-  margin-bottom: 3px;
-`;
-
-const CardContainer = styled.div`
-  width: 100%;
-  height: calc(100vh - 48px - 3px);
-  overflow-y: auto;
-`;
-
-const ProblemHeader = styled.h3`
-  font-size: 14px;
-  line-height: 20px;
-  color: #4c4c4c;
-  padding: 13px 0 14px 24px;
-`;
+import {
+  Section,
+  ProblemHeader,
+  ProblemHeaderContainer,
+  CardContainer,
+} from "./style";
 
 const ProblemLayout = () => {
   const dispatch = useDispatch();
@@ -49,7 +28,6 @@ const ProblemLayout = () => {
       console.log({ error });
     }
   };
-
   return (
     <Section>
       <ProblemHeaderContainer>
