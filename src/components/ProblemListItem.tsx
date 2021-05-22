@@ -107,15 +107,12 @@ const ProblemListItem: React.FC<ProblemListItemProps> = ({
   }, [dispatch, targetIndex]);
 
   const onClickDeleteButton = useCallback(() => {
+    dispatch(deleteProblem(targetIndex));
     if (activeIndex === targetIndex) {
       dispatch(changeValue({ key: "isButtonClicked", value: false }));
-      dispatch(deleteProblem(targetIndex));
       dispatch(changeValue({ key: "activeIndex", value: -1 }));
     } else if (activeIndex > targetIndex) {
-      dispatch(deleteProblem(targetIndex));
       dispatch(changeValue({ key: "activeIndex", value: activeIndex - 1 }));
-    } else {
-      dispatch(deleteProblem(targetIndex));
     }
   }, [dispatch, activeIndex, targetIndex]);
 
