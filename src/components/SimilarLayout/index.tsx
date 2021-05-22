@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 import SimilarList from "../SimilarList";
 import { RootState } from "../../reducers";

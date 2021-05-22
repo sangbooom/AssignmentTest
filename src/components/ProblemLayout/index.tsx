@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 import ProblemList from "../ProblemList";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,7 +10,7 @@ import {
   ProblemHeaderContainer,
   CardContainer,
 } from "./style";
-import * as problemsAPI from '../../lib/api';
+import * as problemsAPI from "../../lib/api";
 
 const ProblemLayout = () => {
   const dispatch = useDispatch();
