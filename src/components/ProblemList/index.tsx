@@ -10,7 +10,7 @@ const ProblemList: React.FC<ProblemListProps> = ({ problems }) => {
   return (
     <React.Fragment>
       {problems.map((problem, index) => (
-        <ProblemListItem problem={problem} key={index} index={index + 1} />
+        <ProblemListItem problem={problem} key={problem.id} index={index + 1} />
       ))}
     </React.Fragment>
   );

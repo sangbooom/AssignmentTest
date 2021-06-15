@@ -10,7 +10,7 @@ const SimilarList: React.FC<SimilarListProps> = ({ similars }) => {
   return (
     <React.Fragment>
       {similars.map((similar, index) => (
-        <SimilarListItem similar={similar} key={index} index={index + 1} />
+        <SimilarListItem similar={similar} key={similar.id} index={index + 1} />
       ))}
     </React.Fragment>
   );
